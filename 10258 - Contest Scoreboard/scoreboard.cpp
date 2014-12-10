@@ -9,13 +9,6 @@
 
 using namespace std;
 
-struct input {
-    int playerId; 
-    int problem; 
-    int time; 
-    char L;  
-};
-
 struct player {
     int id; 
     set<int> problemsSolved;
@@ -66,14 +59,14 @@ int main()
     int testCases;
     string line;
     istringstream iss;
-    vector<input> inputs;
     
     cin >> testCases;
     cin.get(); // ignore newline after testCase count
     getline(cin, line); // ignore empty line
     
     while(testCases-- > 0) {
-        do { // add to input container
+        do {
+            // retrieve input:
             getline(cin, line);
             istringstream iss(line);
             
@@ -87,37 +80,30 @@ int main()
             iss >> time;
             iss >> L;
             
-            input inp = { playerId, problem, time, L };
-            inputs.push_back(inp);
-        } while (line != "");
-        
-        for (auto &inp : inputs) {
-            player *pl = getPlayer(inp.playerId);
+            player *pl = getPlayer(playerId);
             
             // proceeding submissions after a correct submission is skipped
-            if (hasProblemSolved(inp.problem, pl)) continue;
+            if (hasProblemSolved(problem, pl)) continue;
             
-            if (inp.L == 'I') {
-                pl->incorrectCount[inp.problem]++;
-            } else if (inp.L == 'C') {
+            if (L == 'I') {
+                pl->incorrectCount[problem]++;
+            } else if (L == 'C') {
                 pl->timePenalty += 
-                    (pl->incorrectCount[inp.problem] * INCORRECT_PENALTY_TIME) + 
-                    inp.time;
-                pl->problemsSolved.insert(inp.problem);
+                    (pl->incorrectCount[problem] * INCORRECT_PENALTY_TIME) + time;
+                pl->problemsSolved.insert(problem);
             }
-        }
+        } while (line != "");
         
         sort(players.begin(), players.end(), comparePlayerPtr);
         
         // print scoreboard 
-        for (player *p : players) {
-            cout << p->id << " " 
-                 << p->problemsSolved.size() << " " 
-                 << p->timePenalty << endl;
+        for (player *pl : players) {
+            cout << pl->id << " " 
+                 << pl->problemsSolved.size() << " " 
+                 << pl->timePenalty << endl;
         }
         
         // cleanups:
-        inputs.clear();
         for (player *pl : players) delete pl;
         players.clear();
     
