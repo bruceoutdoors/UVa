@@ -4,6 +4,7 @@
 #include <set>
 #include <map>
 #include <algorithm>
+#include <memory>
 
 #define INCORRECT_PENALTY_TIME 20
 
@@ -21,10 +22,12 @@ struct player {
     }
 };
 
-vector<player*> players;
+typedef shared_ptr<player> playerPtr;
+
+vector<playerPtr> players;
 
 // default comparable cannot be used as sort algorithm sorts by reference
-bool comparePlayerPtr(player* a, player* b) 
+bool comparePlayerPtr(playerPtr a, playerPtr b) 
 { 
     if (a->problemsSolved.size() == b->problemsSolved.size()) {
         if (a->timePenalty == b->timePenalty) {
@@ -36,19 +39,19 @@ bool comparePlayerPtr(player* a, player* b)
     return a->problemsSolved.size() > b->problemsSolved.size();
 }
 
-player* getPlayer(int id) 
+playerPtr getPlayer(int id) 
 {
-    for (player *p : players) {
+    for (auto p : players) {
         if (p->id == id) return p;
     }
     
     // if cannot found, create, add and return one
-    player *p = new player(id);
+    playerPtr p(new player(id));
     players.push_back(p);
     return p;
 }
 
-bool hasProblemSolved(int prob, player *p)
+bool hasProblemSolved(int prob, playerPtr p)
 {
     return (p->problemsSolved.find(prob) == p->problemsSolved.end()) ?
             false : true;
@@ -80,7 +83,7 @@ int main()
             iss >> time;
             iss >> L;
             
-            player *pl = getPlayer(playerId);
+            playerPtr pl = getPlayer(playerId);
             
             // proceeding submissions after a correct submission is skipped
             if (hasProblemSolved(problem, pl)) continue;
@@ -97,14 +100,13 @@ int main()
         sort(players.begin(), players.end(), comparePlayerPtr);
         
         // print scoreboard 
-        for (player *pl : players) {
+        for (auto pl : players) {
             cout << pl->id << " " 
                  << pl->problemsSolved.size() << " " 
                  << pl->timePenalty << endl;
         }
         
         // cleanups:
-        for (player *pl : players) delete pl;
         players.clear();
     
         // make sure there is only ONE blank line 
