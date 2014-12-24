@@ -23,3 +23,4 @@ Problems are sorted in order which they were solved:
  8. [10420 - List of Conquests](http://uva.onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&page=show_problem&problem=1361) (super easy, if you know what data struct to use)
  9. [11799 - Horror Dash](http://uva.onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&page=show_problem&problem=2899) (super easy)
  10. [11559 - Event Planning](http://uva.onlinejudge.org/index.php?option=onlinejudge&page=show_problem&problem=2595) (super easy)
+ 11. [462 - Bridge Hand Evaluator](http://uva.onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&page=show_problem&category=&problem=403) (quite easy)
