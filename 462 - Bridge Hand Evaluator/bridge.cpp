@@ -17,7 +17,7 @@ int main()
     // so we pass a custom comparator (a lambda function) for the map 
     map<char, int, bool(*)(char, char)> suitCount([](char l, char r) { return l > r; });
     
-	while (getline(cin, line)) {
+    while (getline(cin, line)) {
         Card card;
         vector<Card> cards;
         set<char> stoppedSuits; 
@@ -98,10 +98,9 @@ int main()
                 
             cout << "BID " << suit << endl;
         }
-        
     }
     
     // there is an empty line at the end of this output. Without it,
     // you get wrong answer without a fucking clue what went wrong
-	return 0;
+    return 0;
 }
