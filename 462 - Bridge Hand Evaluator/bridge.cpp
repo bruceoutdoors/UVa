@@ -18,19 +18,17 @@ int main()
     map<char, int, bool(*)(char, char)> suitCount([](char l, char r) { return l > r; });
     
 	while (getline(cin, line)) {
+        Card card;
+        vector<Card> cards;
+        set<char> stoppedSuits; 
+        int points = 0; // <- does not include points from rule 5,6,7
+        int rule567points = 0;
         
         suitCount['S'] = 0;
         suitCount['H'] = 0;
         suitCount['D'] = 0;
         suitCount['C'] = 0;
         
-        Card card;
-        vector<Card> cards;
-        
-        set<char> stoppedSuits; 
-        
-        int points = 0;
-        int rule567points = 0;
         istringstream iss(line);
         
         while (iss >> card.rank >> card.suit) {
@@ -38,37 +36,33 @@ int main()
             cards.push_back(card);
         }
         
+        // we can assert that the minimum count for a suit in suitCount
+        // is at least 1, should it ever reaches the loop below
         for (auto &c : cards) {
-            // we can assert that the minimum count for a suit in 
-            // suitCount is 1, should it ever reaches here
+            // note that the counts below includes the card itself
             switch (c.rank) {
                 case 'A': 
-                    stoppedSuits.insert(c.suit);
                     points += 4; 
+                    stoppedSuits.insert(c.suit);
                     break;
                 case 'K': 
                     points += 3;
-                    if (suitCount[c.suit] > 1) stoppedSuits.insert(c.suit);
-                    // Subtract a point for any king of a suit in 
-                    // which the hand holds 0 other cards.
+                    if (suitCount[c.suit] >  1) stoppedSuits.insert(c.suit);
                     if (suitCount[c.suit] <= 1) points--;
                     break;
                 case 'Q': 
                     points += 2;
-                    if (suitCount[c.suit] > 2) stoppedSuits.insert(c.suit);
-                    // Subtract a point for any queen in a suit in 
-                    // which the hand holds only 0 or 1 other cards.
+                    if (suitCount[c.suit] >  2) stoppedSuits.insert(c.suit);
                     if (suitCount[c.suit] <= 2) points--;
                     break;
                 case 'J': 
                     points += 1;
-                    // Subtract a point for any jack in a suit in 
-                    // which the hand holds only 0, 1, or 2 other cards
                     if (suitCount[c.suit] <= 3) points--; 
                     break;
             } 
         }
         
+        // calculation for rule 5,6,7:
         for (auto &kv : suitCount) {
             switch (kv.second) {
                 case 2: rule567points += 1; break;
@@ -94,7 +88,7 @@ int main()
         } else if (totalPoints >= 14) {
             int highest = 0;
             char suit;
-            // get highest suit count:
+            // get highest suit count, in the order S-H-D-C:
             for (auto &kv : suitCount) {
                 if (kv.second > highest) {
                     highest = kv.second;
