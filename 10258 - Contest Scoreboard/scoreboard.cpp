@@ -65,7 +65,7 @@ int main()
     
     cin >> testCases;
     cin.get(); // ignore newline after testCase count
-    getline(cin, line); // ignore empty line
+    cin.get(); // ignore empty line
     
     while(testCases-- > 0) {
         do {
