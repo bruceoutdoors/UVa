@@ -1,4 +1,4 @@
-10205 - Stack 'em Up
+[10205 - Stack 'em Up](http://uva.onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&page=show_problem&problem=1146)
 ============
 
 ### Problem in layman terms:
