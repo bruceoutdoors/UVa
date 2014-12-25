@@ -12,7 +12,7 @@ I rate them accordingly (bear in mind this is only my opinion and might not refl
 - *Advanced* (even experienced coders/lecturers might have trouble figuring it out) 
 - *Insane* (for algorithm experts or crazy geniuses only)
 
-Problems are sorted in order which they were solved, decimals in bold are the fastest run times:
+Problems are sorted in order which they were solved, decimals in bold are the fastest run times. Problems marked with '*' have READMEs:
  1. [10055 - Hashmat the Brave Warrior] (http://uva.onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&page=show_problem&problem=996) - **0.429** (super easy)
  2. [10189 - Minesweeper](http://uva.onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&page=show_problem&problem=1130)  - **0.015**  (quite easy, tricky formatting)
  3. [100 - The 3n + 1 problem](http://uva.onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&page=show_problem&problem=36) - **0.682** (easy)
@@ -24,3 +24,4 @@ Problems are sorted in order which they were solved, decimals in bold are the fa
  9. [11799 - Horror Dash](http://uva.onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&page=show_problem&problem=2899) - **0.016** (super easy)
  10. [11559 - Event Planning](http://uva.onlinejudge.org/index.php?option=onlinejudge&page=show_problem&problem=2595) - **0.019** (super easy)
  11. [462 - Bridge Hand Evaluator](http://uva.onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&page=show_problem&category=&problem=403) - **0.139** (quite easy)
+ 12. [10205 - Stack 'em Up](http://uva.onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&page=show_problem&category=&problem=1146) - **0.019** (intermediate)*
