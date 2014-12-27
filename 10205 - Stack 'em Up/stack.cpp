@@ -10,6 +10,7 @@ using namespace std;
 #define CARD_COUNT 52
 
 typedef array<int, CARD_COUNT> Sequence;
+typedef vector<int> Shuffle;
 
 const array<string, 4> suits  =  {"Clubs", "Diamonds", "Hearts", "Spades"};
 const array<string, 13> ranks = { "2", "3", "4", "5", "6", "7", "8", "9", "10", "Jack", "Queen", "King", "Ace"};
@@ -25,33 +26,31 @@ int findVal(Sequence &seq, int val, int idx)
     return findVal(seq, val, seq[idx]);
 }
 
-void applyShuffle(Sequence &seq, const Sequence &other)
+void applyShuffle(Sequence &seq, const Shuffle &shuffle)
 {
-    Sequence otherCopy(other);
-    stack<int> swapStack;
-
-    // the loop below sorts a copy of the sequence,
-    // pushing required swaps into a stack:
-    for (int i = 0; i < CARD_COUNT; i++) {
-        if (i != otherCopy[i]) {
-            int idx = findVal(otherCopy, i, otherCopy[i]);
-            swapStack.push(i);
-            swapStack.push(idx);
-        }
-    }
-    
-    // the swap is then executed in descending order:
-    while (!swapStack.empty()) {
-        int idx = swapStack.top();
-        swapStack.pop();
-        swap(seq[idx], seq[swapStack.top()]);
-        swapStack.pop();
-        
-        //~ cout << "swap " << idx+1 << " with " << swapStack.top()+1 << endl;
+    // the swap is executed in descending order:
+    for (int i = shuffle.size()-1; i > 0; i -= 2) {
+        swap(seq[shuffle[i]], seq[shuffle[i-1]]);
     }
     
     //~ for (int i = 0; i < CARD_COUNT; i++)  cout << seq[i]+1 << " ";
     //~ cout << endl;
+}
+
+Shuffle makeShuffle(Sequence &seq)
+{
+    Shuffle shuffle;
+    
+    // the loop below sorts a the sequence,
+    // pushing required swaps into a stack:
+    for (int i = 0; i < CARD_COUNT; i++) {
+        if (i != seq[i]) {
+            int idx = findVal(seq, i, seq[i]);
+            shuffle.push_back(i);
+            shuffle.push_back(idx);
+        }
+    }
+    return shuffle;
 }
 
 inline void resetSequence(Sequence &seq) { for (int i = 0; i < CARD_COUNT; i++) seq[i] = i; }
@@ -72,18 +71,19 @@ int main()
     cin.get(); // ignore empty line
     
     while(testCases-- > 0) {
-        vector<Sequence> shuffles;
+        vector<Shuffle> shuffles;
         Sequence sequence;
         resetSequence(sequence);
         int kCount;
         cin >> kCount;
         
         while (kCount-- > 0) {
-            Sequence shuffle;
+            Sequence seq;
             for (int i = 0; i < CARD_COUNT; i++) {
-                cin >> shuffle[i];
-                shuffle[i]--; // sequences start from 1, but array idx starts from 0
+                cin >> seq[i];
+                seq[i]--; // sequences start from 1, but array idx starts from 0
             }
+            Shuffle shuffle = makeShuffle(seq);
             shuffles.push_back(shuffle);
         }
         
