@@ -14,7 +14,7 @@ Therefore here's how you interpret the input:
 1. The top card of the remaining 27 cards is AH. Y = 0.
 2. AH's value is 10, X=10, AH is discarded. Y = 10.
 3. X-10 = 0, so no more cards are discarded
-4. Next card is 2D. 2D's value is 2. X=2. Y = 12.
+4. Next card is 2D. 2D's value is 2. X=2. 2D is discarded. Y = 12. 
 5. 10-X=8, so 8 cards are removed off the top of the pile
 6. Next card is JD. Only JD is removed. X=10. Y = 22.
 7. Take the 25 cards in your hand and place on top of the pile.
