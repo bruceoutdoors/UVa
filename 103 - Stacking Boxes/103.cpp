@@ -1,7 +1,5 @@
 #include <iostream>
 #include <vector>
-#include <string>
-#include <map>
 #include <algorithm>
 #include <deque>
 #include <climits>
@@ -143,11 +141,8 @@ private:
 
 bool canFit(Box *a, Box *b)
 {
-	auto itr = b->ds.begin();
-	
-	for (auto &m : a->ds) {
-		if (*itr <= m) return false;
-		itr++;
+	for (int i = 0; i < a->ds.size(); i++) {
+		if (a->ds[i] >= b->ds[i]) return false;
 	}
 	
 	return true;
