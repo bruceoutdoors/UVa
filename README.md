@@ -28,4 +28,5 @@ Problems are sorted in order which they were solved, decimals in bold are the fa
  13. [10646 - What is the Card?](http://uva.onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&page=show_problem&problem=1587) - **0.028** (easy, if you understand the question)* 
  14. [103 - Stacking Boxes](http://uva.onlinejudge.org/external/1/103.html) - **0.000** (Challenging)*
  15. [562 - Dividing coins](https://uva.onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&category=144&page=show_problem&problem=503) - **0.022** (Challenging)
+ 16. [10130 - SuperSale](https://uva.onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&category=144&page=show_problem&problem=1071) - **0.019** (intermediate, DP knowledge required)
  
